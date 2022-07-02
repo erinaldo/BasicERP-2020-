@@ -1,0 +1,561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="mobilyaciModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mobilyaci.dbo.tbl_attendance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_attendance">
+          <Key>
+            <PropertyRef Name="att_id" />
+          </Key>
+          <Property Name="att_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="per_id" Type="int" />
+          <Property Name="att_date" Type="datetime" />
+          <Property Name="att_type" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tbl_customer">
+          <Key>
+            <PropertyRef Name="customer_no" />
+          </Key>
+          <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_no" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="customer_name" Type="varchar" MaxLength="150" />
+          <Property Name="customer_gsm" Type="varchar" MaxLength="50" />
+          <Property Name="customer_gsm2" Type="varchar" MaxLength="50" />
+          <Property Name="customer_email" Type="varchar" MaxLength="100" />
+          <Property Name="customer_address" Type="varchar(max)" />
+          <Property Name="customer_sector" Type="varchar" MaxLength="150" />
+          <Property Name="customer_iban" Type="varchar" MaxLength="26" />
+          <Property Name="customer_agent" Type="varchar" MaxLength="150" />
+          <Property Name="customer_add_date" Type="datetime" />
+          <Property Name="customer_status" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mobilyaci.dbo.tbl_denomination' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_denomination">
+          <Key>
+            <PropertyRef Name="den_id" />
+          </Key>
+          <Property Name="den_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="den_name" Type="varchar" MaxLength="20" />
+          <Property Name="den_no" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mobilyaci.dbo.tbl_department' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_department">
+          <Key>
+            <PropertyRef Name="dep_id" />
+          </Key>
+          <Property Name="dep_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dep_no" Type="varchar" MaxLength="50" />
+          <Property Name="dep_name" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="tbl_material">
+          <Key>
+            <PropertyRef Name="material_no" />
+          </Key>
+          <Property Name="material_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="material_no" Type="bigint" Nullable="false" />
+          <Property Name="material_name" Type="varchar" MaxLength="50" />
+          <Property Name="material_barkod" Type="varchar" MaxLength="50" />
+          <Property Name="material_amount" Type="bigint" />
+          <Property Name="material_price" Type="bigint" />
+          <Property Name="material_denomination" Type="varchar" MaxLength="20" />
+          <Property Name="material_description" Type="varchar(max)" />
+          <Property Name="material_add_date" Type="datetime" />
+          <Property Name="material_status" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mobilyaci.dbo.tbl_personnel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_personnel">
+          <Key>
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="per_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="per_tc_no" Type="varchar" MaxLength="11" />
+          <Property Name="per_name" Type="varchar" MaxLength="50" />
+          <Property Name="per_surname" Type="varchar" MaxLength="50" />
+          <Property Name="per_bday" Type="datetime" />
+          <Property Name="blood_type" Type="varchar" MaxLength="10" />
+          <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="per_type" Type="varchar" MaxLength="50" />
+          <Property Name="marital_status" Type="varchar" MaxLength="10" />
+          <Property Name="per_gsm" Type="varchar" MaxLength="50" />
+          <Property Name="per_address" Type="varchar(max)" />
+          <Property Name="per_mail" Type="varchar" MaxLength="50" />
+          <Property Name="per_iban" Type="varchar" MaxLength="26" />
+          <Property Name="per_add_date" Type="datetime" />
+          <Property Name="per_f_no" Type="varchar" MaxLength="50" />
+          <Property Name="per_ssk_no" Type="varchar" MaxLength="50" />
+          <Property Name="per_tax_id" Type="varchar" MaxLength="50" />
+          <Property Name="per_charge" Type="varchar" MaxLength="10" />
+          <Property Name="dep_id" Type="varchar" MaxLength="50" />
+          <Property Name="per_status" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mobilyaci.dbo.tbl_sale' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_sale">
+          <Key>
+            <PropertyRef Name="slip_id" />
+          </Key>
+          <Property Name="slip_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slip_no" Type="varchar" MaxLength="50" />
+          <Property Name="customer_no" Type="varchar" MaxLength="50" />
+          <Property Name="stock_no" Type="varchar" MaxLength="50" />
+          <Property Name="quantity" Type="bigint" />
+          <Property Name="sold_date" Type="datetime" />
+          <Property Name="gross_price" Type="bigint" />
+          <Property Name="profit" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_stock">
+          <Key>
+            <PropertyRef Name="stock_no" />
+          </Key>
+          <Property Name="stock_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stock_no" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="stock_name" Type="varchar" MaxLength="50" />
+          <Property Name="stock_barkod" Type="varchar" MaxLength="50" />
+          <Property Name="stock_amount" Type="bigint" />
+          <Property Name="stock_price" Type="bigint" />
+          <Property Name="stock_denomination" Type="varchar" MaxLength="20" />
+          <Property Name="stock_description" Type="varchar(max)" />
+          <Property Name="stock_add_date" Type="datetime" />
+          <Property Name="stock_status" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mobilyaci.dbo.tbl_user' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" />
+          <Property Name="user_password" Type="varchar" MaxLength="50" />
+          <Property Name="user_nickname" Type="varchar" MaxLength="50" />
+          <Property Name="user_permission" Type="varchar" MaxLength="1" />
+          <Property Name="user_email" Type="varchar" MaxLength="100" />
+          <Property Name="user_add_date" Type="datetime" />
+          <Property Name="user_status" Type="bit" />
+          <Property Name="user_image" Type="image" />
+          <Property Name="user_imgFileName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mobilyaci.dbo.tbl_userlog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_userlog">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_islem" Type="varchar(max)" />
+          <Property Name="log_date" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="mobilyaciModelStoreContainer">
+          <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_material" EntityType="Self.tbl_material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_stock" EntityType="Self.tbl_stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_attendance" EntityType="Self.tbl_attendance" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_attendance].[att_id] AS [att_id], 
+    [tbl_attendance].[per_id] AS [per_id], 
+    [tbl_attendance].[att_date] AS [att_date], 
+    [tbl_attendance].[att_type] AS [att_type]
+    FROM [dbo].[tbl_attendance] AS [tbl_attendance]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_denomination" EntityType="Self.tbl_denomination" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_denomination].[den_id] AS [den_id], 
+    [tbl_denomination].[den_name] AS [den_name], 
+    [tbl_denomination].[den_no] AS [den_no]
+    FROM [dbo].[tbl_denomination] AS [tbl_denomination]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_department" EntityType="Self.tbl_department" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_department].[dep_id] AS [dep_id], 
+    [tbl_department].[dep_no] AS [dep_no], 
+    [tbl_department].[dep_name] AS [dep_name]
+    FROM [dbo].[tbl_department] AS [tbl_department]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_personnel" EntityType="Self.tbl_personnel" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_personnel].[per_id] AS [per_id], 
+    [tbl_personnel].[per_tc_no] AS [per_tc_no], 
+    [tbl_personnel].[per_name] AS [per_name], 
+    [tbl_personnel].[per_surname] AS [per_surname], 
+    [tbl_personnel].[per_bday] AS [per_bday], 
+    [tbl_personnel].[blood_type] AS [blood_type], 
+    [tbl_personnel].[gender] AS [gender], 
+    [tbl_personnel].[per_type] AS [per_type], 
+    [tbl_personnel].[marital_status] AS [marital_status], 
+    [tbl_personnel].[per_gsm] AS [per_gsm], 
+    [tbl_personnel].[per_address] AS [per_address], 
+    [tbl_personnel].[per_mail] AS [per_mail], 
+    [tbl_personnel].[per_iban] AS [per_iban], 
+    [tbl_personnel].[per_add_date] AS [per_add_date], 
+    [tbl_personnel].[per_f_no] AS [per_f_no], 
+    [tbl_personnel].[per_ssk_no] AS [per_ssk_no], 
+    [tbl_personnel].[per_tax_id] AS [per_tax_id], 
+    [tbl_personnel].[per_charge] AS [per_charge], 
+    [tbl_personnel].[dep_id] AS [dep_id], 
+    [tbl_personnel].[per_status] AS [per_status]
+    FROM [dbo].[tbl_personnel] AS [tbl_personnel]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_sale" EntityType="Self.tbl_sale" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_sale].[slip_id] AS [slip_id], 
+    [tbl_sale].[slip_no] AS [slip_no], 
+    [tbl_sale].[customer_no] AS [customer_no], 
+    [tbl_sale].[stock_no] AS [stock_no], 
+    [tbl_sale].[quantity] AS [quantity], 
+    [tbl_sale].[sold_date] AS [sold_date], 
+    [tbl_sale].[gross_price] AS [gross_price], 
+    [tbl_sale].[profit] AS [profit]
+    FROM [dbo].[tbl_sale] AS [tbl_sale]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_user].[user_id] AS [user_id], 
+    [tbl_user].[user_name] AS [user_name], 
+    [tbl_user].[user_password] AS [user_password], 
+    [tbl_user].[user_nickname] AS [user_nickname], 
+    [tbl_user].[user_permission] AS [user_permission], 
+    [tbl_user].[user_email] AS [user_email], 
+    [tbl_user].[user_add_date] AS [user_add_date], 
+    [tbl_user].[user_status] AS [user_status], 
+    [tbl_user].[user_image] AS [user_image], 
+    [tbl_user].[user_imgFileName] AS [user_imgFileName]
+    FROM [dbo].[tbl_user] AS [tbl_user]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_userlog" EntityType="Self.tbl_userlog" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_userlog].[user_id] AS [user_id], 
+    [tbl_userlog].[user_islem] AS [user_islem], 
+    [tbl_userlog].[log_date] AS [log_date]
+    FROM [dbo].[tbl_userlog] AS [tbl_userlog]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mobilyaciModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_customer">
+          <Key>
+            <PropertyRef Name="customer_no" />
+          </Key>
+          <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customer_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="customer_gsm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_gsm2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="customer_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="customer_sector" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="customer_iban" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="customer_agent" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="customer_add_date" Type="DateTime" Precision="3" />
+          <Property Name="customer_status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_material">
+          <Key>
+            <PropertyRef Name="material_no" />
+          </Key>
+          <Property Name="material_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="material_no" Type="Int64" Nullable="false" />
+          <Property Name="material_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="material_barkod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="material_amount" Type="Int64" />
+          <Property Name="material_price" Type="Int64" />
+          <Property Name="material_denomination" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="material_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="material_add_date" Type="DateTime" Precision="3" />
+          <Property Name="material_status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_stock">
+          <Key>
+            <PropertyRef Name="stock_no" />
+          </Key>
+          <Property Name="stock_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stock_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stock_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stock_barkod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stock_amount" Type="Int64" />
+          <Property Name="stock_price" Type="Int64" />
+          <Property Name="stock_denomination" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="stock_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="stock_add_date" Type="DateTime" Precision="3" />
+          <Property Name="stock_status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_attendance">
+          <Key>
+            <PropertyRef Name="att_id" />
+          </Key>
+          <Property Name="att_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="per_id" Type="Int32" />
+          <Property Name="att_date" Type="DateTime" Precision="3" />
+          <Property Name="att_type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_denomination">
+          <Key>
+            <PropertyRef Name="den_id" />
+          </Key>
+          <Property Name="den_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="den_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="den_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_department">
+          <Key>
+            <PropertyRef Name="dep_id" />
+          </Key>
+          <Property Name="dep_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dep_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dep_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_personnel">
+          <Key>
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="per_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="per_tc_no" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="per_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_bday" Type="DateTime" Precision="3" />
+          <Property Name="blood_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="per_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="marital_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="per_gsm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="per_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_iban" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="per_add_date" Type="DateTime" Precision="3" />
+          <Property Name="per_f_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_ssk_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_tax_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_charge" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dep_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_sale">
+          <Key>
+            <PropertyRef Name="slip_id" />
+          </Key>
+          <Property Name="slip_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slip_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stock_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int64" />
+          <Property Name="sold_date" Type="DateTime" Precision="3" />
+          <Property Name="gross_price" Type="Int64" />
+          <Property Name="profit" Type="Int64" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_permission" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="user_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_add_date" Type="DateTime" Precision="3" />
+          <Property Name="user_status" Type="Boolean" />
+          <Property Name="user_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="user_imgFileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_userlog">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_islem" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="log_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="mobilyaciEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" />
+          <EntitySet Name="tbl_material" EntityType="Self.tbl_material" />
+          <EntitySet Name="tbl_stock" EntityType="Self.tbl_stock" />
+          <EntitySet Name="tbl_attendance" EntityType="Self.tbl_attendance" />
+          <EntitySet Name="tbl_denomination" EntityType="Self.tbl_denomination" />
+          <EntitySet Name="tbl_department" EntityType="Self.tbl_department" />
+          <EntitySet Name="tbl_personnel" EntityType="Self.tbl_personnel" />
+          <EntitySet Name="tbl_sale" EntityType="Self.tbl_sale" />
+          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" />
+          <EntitySet Name="tbl_userlog" EntityType="Self.tbl_userlog" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mobilyaciModelStoreContainer" CdmEntityContainer="mobilyaciEntities1">
+          <EntitySetMapping Name="tbl_customer">
+            <EntityTypeMapping TypeName="mobilyaciModel.tbl_customer">
+              <MappingFragment StoreEntitySet="tbl_customer">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="customer_no" ColumnName="customer_no" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_gsm" ColumnName="customer_gsm" />
+                <ScalarProperty Name="customer_gsm2" ColumnName="customer_gsm2" />
+                <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+                <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+                <ScalarProperty Name="customer_sector" ColumnName="customer_sector" />
+                <ScalarProperty Name="customer_iban" ColumnName="customer_iban" />
+                <ScalarProperty Name="customer_agent" ColumnName="customer_agent" />
+                <ScalarProperty Name="customer_add_date" ColumnName="customer_add_date" />
+                <ScalarProperty Name="customer_status" ColumnName="customer_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_material">
+            <EntityTypeMapping TypeName="mobilyaciModel.tbl_material">
+              <MappingFragment StoreEntitySet="tbl_material">
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+                <ScalarProperty Name="material_no" ColumnName="material_no" />
+                <ScalarProperty Name="material_name" ColumnName="material_name" />
+                <ScalarProperty Name="material_barkod" ColumnName="material_barkod" />
+                <ScalarProperty Name="material_amount" ColumnName="material_amount" />
+                <ScalarProperty Name="material_price" ColumnName="material_price" />
+                <ScalarProperty Name="material_denomination" ColumnName="material_denomination" />
+                <ScalarProperty Name="material_description" ColumnName="material_description" />
+                <ScalarProperty Name="material_add_date" ColumnName="material_add_date" />
+                <ScalarProperty Name="material_status" ColumnName="material_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_stock">
+            <EntityTypeMapping TypeName="mobilyaciModel.tbl_stock">
+              <MappingFragment StoreEntitySet="tbl_stock">
+                <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+                <ScalarProperty Name="stock_no" ColumnName="stock_no" />
+                <ScalarProperty Name="stock_name" ColumnName="stock_name" />
+                <ScalarProperty Name="stock_barkod" ColumnName="stock_barkod" />
+                <ScalarProperty Name="stock_amount" ColumnName="stock_amount" />
+                <ScalarProperty Name="stock_price" ColumnName="stock_price" />
+                <ScalarProperty Name="stock_denomination" ColumnName="stock_denomination" />
+                <ScalarProperty Name="stock_description" ColumnName="stock_description" />
+                <ScalarProperty Name="stock_add_date" ColumnName="stock_add_date" />
+                <ScalarProperty Name="stock_status" ColumnName="stock_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_attendance">
+            <EntityTypeMapping TypeName="mobilyaciModel.tbl_attendance">
+              <MappingFragment StoreEntitySet="tbl_attendance">
+                <ScalarProperty Name="att_id" ColumnName="att_id" />
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
+                <ScalarProperty Name="att_date" ColumnName="att_date" />
+                <ScalarProperty Name="att_type" ColumnName="att_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_denomination">
+            <EntityTypeMapping TypeName="mobilyaciModel.tbl_denomination">
+              <MappingFragment StoreEntitySet="tbl_denomination">
+                <ScalarProperty Name="den_id" ColumnName="den_id" />
+                <ScalarProperty Name="den_name" ColumnName="den_name" />
+                <ScalarProperty Name="den_no" ColumnName="den_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_department">
+            <EntityTypeMapping TypeName="mobilyaciModel.tbl_department">
+              <MappingFragment StoreEntitySet="tbl_department">
+                <ScalarProperty Name="dep_id" ColumnName="dep_id" />
+                <ScalarProperty Name="dep_no" ColumnName="dep_no" />
+                <ScalarProperty Name="dep_name" ColumnName="dep_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_personnel">
+            <EntityTypeMapping TypeName="mobilyaciModel.tbl_personnel">
+              <MappingFragment StoreEntitySet="tbl_personnel">
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
+                <ScalarProperty Name="per_tc_no" ColumnName="per_tc_no" />
+                <ScalarProperty Name="per_name" ColumnName="per_name" />
+                <ScalarProperty Name="per_surname" ColumnName="per_surname" />
+                <ScalarProperty Name="per_bday" ColumnName="per_bday" />
+                <ScalarProperty Name="blood_type" ColumnName="blood_type" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="per_type" ColumnName="per_type" />
+                <ScalarProperty Name="marital_status" ColumnName="marital_status" />
+                <ScalarProperty Name="per_gsm" ColumnName="per_gsm" />
+                <ScalarProperty Name="per_address" ColumnName="per_address" />
+                <ScalarProperty Name="per_mail" ColumnName="per_mail" />
+                <ScalarProperty Name="per_iban" ColumnName="per_iban" />
+                <ScalarProperty Name="per_add_date" ColumnName="per_add_date" />
+                <ScalarProperty Name="per_f_no" ColumnName="per_f_no" />
+                <ScalarProperty Name="per_ssk_no" ColumnName="per_ssk_no" />
+                <ScalarProperty Name="per_tax_id" ColumnName="per_tax_id" />
+                <ScalarProperty Name="per_charge" ColumnName="per_charge" />
+                <ScalarProperty Name="dep_id" ColumnName="dep_id" />
+                <ScalarProperty Name="per_status" ColumnName="per_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_sale">
+            <EntityTypeMapping TypeName="mobilyaciModel.tbl_sale">
+              <MappingFragment StoreEntitySet="tbl_sale">
+                <ScalarProperty Name="slip_id" ColumnName="slip_id" />
+                <ScalarProperty Name="slip_no" ColumnName="slip_no" />
+                <ScalarProperty Name="customer_no" ColumnName="customer_no" />
+                <ScalarProperty Name="stock_no" ColumnName="stock_no" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="sold_date" ColumnName="sold_date" />
+                <ScalarProperty Name="gross_price" ColumnName="gross_price" />
+                <ScalarProperty Name="profit" ColumnName="profit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_user">
+            <EntityTypeMapping TypeName="mobilyaciModel.tbl_user">
+              <MappingFragment StoreEntitySet="tbl_user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="user_nickname" ColumnName="user_nickname" />
+                <ScalarProperty Name="user_permission" ColumnName="user_permission" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_add_date" ColumnName="user_add_date" />
+                <ScalarProperty Name="user_status" ColumnName="user_status" />
+                <ScalarProperty Name="user_image" ColumnName="user_image" />
+                <ScalarProperty Name="user_imgFileName" ColumnName="user_imgFileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_userlog">
+            <EntityTypeMapping TypeName="mobilyaciModel.tbl_userlog">
+              <MappingFragment StoreEntitySet="tbl_userlog">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_islem" ColumnName="user_islem" />
+                <ScalarProperty Name="log_date" ColumnName="log_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
